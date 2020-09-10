@@ -6,7 +6,7 @@ export const Login = () => {
         <b>Email</b>
         <br/>
         <br/>
-        <form method="post" action="login">
+        <form method="post" action="/rest/login">
             <table border="0">
                 <tbody>
                     <tr>
@@ -32,7 +32,7 @@ export const Login = () => {
         <b>Create Account</b>
         <br/>
         <br/>
-        <form method="post" action="login">
+        <form method="post" action="/rest/signup">
             <table border="0">
                 <tbody>
                     <tr>
