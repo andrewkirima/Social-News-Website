@@ -17,12 +17,7 @@ firebase = pyrebase.initialize_app(firebaseConfig)
 auth = firebase.auth()
 
 
-@app.route("/")
-def root():
-    return render_template("index.html")
-
-
-@app.route("/login", methods=['POST'])
+@app.route("/rest/login", methods=['POST'])
 def login():
     if request.method == 'POST':
         email = request.form['email']
@@ -33,7 +28,7 @@ def login():
             return Response("Login failed", status=401, mimetype='application/plain')
 
 
-@app.route("/signup", methods=['POST'])
+@app.route("/rest/signup", methods=['POST'])
 def signup():
     if request.method == 'POST':
         email = request.form['email']
@@ -42,6 +37,11 @@ def signup():
             return auth.create_user_with_email_and_password(email, password)
         except:
             return Response("Sign up was unsuccessful", status=401, mimetype='application/plain')
+
+
+@app.route("/")
+def root():
+    return render_template("index.html")
 
 
 app.run(debug=True)
