@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { MenuItem } from "./MenuItem";
+// import { MenuItem } from "./MenuItem";
 import { Button } from "../Button";
 import "./Navbar.css";
 
@@ -15,12 +15,18 @@ class Navbar extends Component {
     return (
       <nav className="NavbarItems">
         <Link to="/">
-            <h1 className="navbar-logo">
-              <i className="fas fa-newspaper"></i> Q-Insight
-            </h1>
+          <h1 className="navbar-logo">
+            <i className="fas fa-newspaper"></i> Q-Insight
+          </h1>
+        </Link>
+        <Link to="/articlespage">
+          <Button>Articles</Button>
+        </Link>
+        <Link to="/commentspage">
+          <Button>Comments</Button>
         </Link>
         <Link to="/login">
-            <Button>Log-in</Button>
+          <Button>Log-in</Button>
         </Link>
       </nav>
     );
