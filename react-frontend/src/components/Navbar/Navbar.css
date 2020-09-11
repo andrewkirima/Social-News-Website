@@ -18,6 +18,22 @@
   cursor: pointer;
 }
 
+.link-item {
+  text-decoration: none !important;
+}
+
+.link-item-center {
+  text-decoration: none !important;
+  float: center;
+  margin-left: 28rem;
+}
+
+.link-item-right {
+  text-decoration: none !important;
+  float: right;
+  margin-left: auto;
+}
+
 /* .fa-react {
   margin-left: 0.5rem;
   font-size: 1.6rem;

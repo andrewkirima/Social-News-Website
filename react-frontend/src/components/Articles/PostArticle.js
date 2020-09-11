@@ -98,9 +98,17 @@ class PostArticle extends Component {
             </tbody>
           </table>
           <br />
-          <button className="btn btn-primary" type="submit">
-            Submit
-          </button>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <button className="btn btn-primary" type="submit">
+              Submit
+            </button>
+          </div>
           <br />
           <br />
           <br />

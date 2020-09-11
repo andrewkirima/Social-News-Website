@@ -52,8 +52,16 @@ const ArticleList = (articleList) => {
               Upvotes: {data.upvotes}
             </div>
             <br />
-            <Button>Edit Post</Button>
-            <Button>Delete Post</Button>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Button>Edit Post</Button>&nbsp;
+              <Button>Delete Post</Button>
+            </div>
             <br />
             <br />
           </div>

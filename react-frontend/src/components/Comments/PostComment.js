@@ -86,9 +86,17 @@ class PostComment extends Component {
             </tbody>
           </table>
           <br />
-          <button className="btn btn-primary" type="submit">
-            Post
-          </button>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <button className="btn btn-primary" type="submit">
+              Post
+            </button>
+          </div>
           <br />
           <br />
           <br />

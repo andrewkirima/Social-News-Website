@@ -4,7 +4,16 @@ import "./Button.css";
 export const Login = () => {
   return (
     <div>
-      <h2>Email</h2>
+      <br />
+      <h2
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        Email
+      </h2>
       <br />
       <form method="post" action="/rest/login">
         <table border="0">
@@ -32,15 +41,40 @@ export const Login = () => {
           </tbody>
         </table>
         <br />
-        <input className="btn btn-primary" type="submit" value="Login" />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <input className="btn btn-primary" type="submit" value="Login" />
+        </div>
       </form>
       <br />
-      <a href="forgot">Forgot your password?</a>
+      <a
+        href="forgot"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        Forgot your password?
+      </a>
       <br />
       <br />
       <br />
       <br />
-      <h2>Create Account</h2>
+      <h2
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        Create Account
+      </h2>
       <br />
       <form method="post" action="/rest/signup">
         <table border="0">
@@ -67,11 +101,19 @@ export const Login = () => {
           </tbody>
         </table>
         <br />
-        <input
-          className="btn btn-primary"
-          type="submit"
-          value="Create account"
-        />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <input
+            className="btn btn-primary"
+            type="submit"
+            value="Create account"
+          />
+        </div>
       </form>
     </div>
   );
