@@ -9,10 +9,44 @@ const CommentList = (commentList) => {
       return commentList.map((data) => {
         return (
           <div className="rowCard">
-            <div className="id">{data.id}</div>
-            <div>{data.user}</div>
-            <div>Comment: {data.text}</div>
-            <div>Upvotes {data.upvotes}</div>
+            <div
+              className="id"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              {data.id}
+            </div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              {data.user}
+            </div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              Comment: {data.text}
+            </div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              Upvotes: {data.upvotes}
+            </div>
+            <br />
           </div>
         );
       });

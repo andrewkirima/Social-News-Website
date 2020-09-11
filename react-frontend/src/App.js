@@ -12,9 +12,17 @@ function App() {
     <Router>
       <div className="App">
         <Navbar />
-        <Route path="/login" component={Login} />
-        <Route path="/articlespage" component={ArticlesPage} />
-        <Route path="/commentspage" component={CommentsPage} />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Route path="/login" component={Login} />
+          <Route path="/articlespage" component={ArticlesPage} />
+          <Route path="/commentspage" component={CommentsPage} />
+        </div>
       </div>
     </Router>
   );

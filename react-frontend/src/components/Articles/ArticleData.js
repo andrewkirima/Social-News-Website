@@ -6,7 +6,15 @@ class ArticleData extends React.Component {
     return (
       <div class="containerArticle">
         <div>
-          <h1>Article List</h1>
+          <h1
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            Article List
+          </h1>
           <Articles />
         </div>
       </div>

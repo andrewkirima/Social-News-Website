@@ -41,10 +41,26 @@ class PostArticle extends Component {
     const { title, link, user } = this.state;
     return (
       <div>
-        <h2>Post an Article</h2>
+        <br />
+        <h1
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          Post an Article
+        </h1>
         <br />
         <form onSubmit={this.submitHandler}>
-          <table border="0">
+          <table
+            border="0"
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             <tbody>
               <tr>
                 <td>Title of Article:</td>

@@ -40,10 +40,26 @@ class PostComment extends Component {
     const { user, text } = this.state;
     return (
       <div>
-        <h2>Post a Comment</h2>
+        <br />
+        <h1
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          Post a Comment
+        </h1>
         <br />
         <form onSubmit={this.submitHandler}>
-          <table border="0">
+          <table
+            border="0"
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             <tbody>
               <tr>
                 <td>User Name:</td>

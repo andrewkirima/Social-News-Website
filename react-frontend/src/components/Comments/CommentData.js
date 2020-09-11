@@ -6,7 +6,15 @@ class CommentData extends React.Component {
     return (
       <div class="containerArticle">
         <div>
-          <h1>Comments List</h1>
+          <h1
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            Comments List
+          </h1>
           <Comments />
         </div>
       </div>
