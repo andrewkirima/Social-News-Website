@@ -1,31 +1,77 @@
-import React from "react";
-import Navbar from "./components/Navbar/Navbar";
-import Login from "./components/Login";
-// import Dashboard from "./components/Dashboard";
-import ArticlesPage from "./components/ArticlesPage";
-import CommentsPage from "./components/CommentsPage";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import "./App.css";
+// import React from 'react';
+// import logo from './logo.svg';
+// import './App.css';
+// import Signinpg from './components/Signinpg'
+// import Navbar from './components/Navbar/Navbar'
+// import Dasboard from './components/Dashbaord/Dashboard'
+// function App() {
+//   return (
+//     <div className="App">
+      
+//     </div>
+//   );
+// }
 
-function App() {
+// export default App;
+
+import React, { Component } from 'react';
+import Login from './components/Login/Login';
+import Signup from './components/Signup/Signup';
+import Dashboard from './components/Dashbaord/Dashboard';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Notfound from './Notfound';
+import './App.css';
+import { Navbar } from 'react-bootstrap';
+
+class App extends Component { 
+  constructor() {
+    super();
+    this.state = {
+      isLoggedIn: false
+    }
+    this.handleLogin = this.handleLogin.bind(this);
+  }
+  handleLogin() {
+    console.log("in handle login:  ")
+    this.setState({
+      isLoggedIn: true     
+    });
+  }
+
+  render() {
   return (
-    <Router>
-      <div className="App">
-        <Navbar />
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Route path="/login" component={Login} />
-          <Route path="/articlespage" component={ArticlesPage} />
-          <Route path="/commentspage" component={CommentsPage} />
-        </div>
-      </div>
-    </Router>
+    <Router>  
+    <Switch>
+      <Route exact path={"/"}
+            render={props => (
+              <Login
+                {...props}
+                isLoggedIn={this.state.isLoggedIn}
+                handleLogin={this.handleLogin}
+              />
+            )}
+      />
+      {/* <Route exact path="/signup" component={Signup} />
+      {this.state.isLoggedIn &&  */}
+      <Route exact path="/dashboard" component={Dashboard} />
+      {/* } */}
+      <Route component={Notfound}/>
+    </Switch>
+  </Router>
+ 
   );
+  }
 }
 
+
 export default App;
+
+
+
+
+
+
+
+// <Navbar />
+      {/* <Signinpg/> */}
+      // <Dasboard />
