@@ -6,18 +6,19 @@ import { Button } from "react-bootstrap";
 import { render } from "@testing-library/react";
 import Comments from "../Comments/Comments";
 import Upvote from "../Upvote";
+import Popup from "reactjs-popup";
 
 const ArticleList = (articleList) => {
   //functional component
 
-  function handleEdit(id) {
-    console.log(id);
-    render(
-      <div>
-        <EditArticle userID={id} />
-      </div>
-    );
-  }
+  // function handleEdit(id) {
+  //   console.log(id);
+  //   render(
+  //     <div>
+  //       <EditArticle userID={id} />
+  //     </div>
+  //   );
+  // }
 
   function handleDelete(title) {
     render(
@@ -27,13 +28,13 @@ const ArticleList = (articleList) => {
     );
   }
 
-  function handleGet(title) {
-    render(
-      <div>
-        <Comments title={title} />
-      </div>
-    );
-  }
+  // function handleGet(title) {
+  //   render(
+  //     <div>
+  //       <Comments title={title} />
+  //     </div>
+  //   );
+  // }
 
   function handleUpvote(upvote) {
     render(
@@ -95,15 +96,45 @@ const ArticleList = (articleList) => {
                 alignItems: "center",
               }}
             >
-              <Button onClick={() => handleEdit(data.id)}>Edit Post</Button>
+              <Popup trigger={<Button> Update</Button>} position="right center">
+                <div
+                  style={{
+                    paddingLeft: "0%",
+                    top: "0%",
+                    width: "100%",
+                    height: "100%",
+                    backgroundColor: "#DCD0FF",
+                  }}
+                >
+                  <EditArticle userID={data.id} />
+                </div>
+              </Popup>
+              {/* <Button onClick={() => handleEdit(data.id)}>Edit Post</Button> */}
               &nbsp;
               <Button onClick={() => handleDelete(data.title)}>
                 Delete Post
               </Button>
               &nbsp;
-              <Button onClick={() => handleGet(data.title)}>Comments</Button>
+              {/* <Button onClick={() => handleGet(data.title)}>Comments</Button> */}
               &nbsp;
               <Button onClick={() => handleUpvote(data.upvote)}>Upvote</Button>
+              &nbsp;
+              <Popup
+                trigger={<Button> Comments </Button>}
+                position="right center"
+              >
+                <div
+                  style={{
+                    paddingLeft: "0%",
+                    top: "0%",
+                    width: "100%",
+                    height: "100%",
+                    backgroundColor: "#DCD0FF",
+                  }}
+                >
+                  <Comments title={data.title} />
+                </div>
+              </Popup>
             </div>
             <br />
           </div>

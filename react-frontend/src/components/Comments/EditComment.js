@@ -107,7 +107,7 @@ class EditComment extends Component {
             }}
           >
             <button className="btn btn-primary" type="submit">
-              Submit
+              Update
             </button>
           </div>
           <br />

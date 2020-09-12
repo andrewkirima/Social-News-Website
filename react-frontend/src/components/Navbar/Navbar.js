@@ -22,9 +22,9 @@ class Navbar extends Component {
         <Link className="link-item-center" to="/articlespage">
           &nbsp;&nbsp;<Button id="articleButton">Articles</Button>&nbsp;
         </Link>
-        <Link className="link-item" to="/commentspage">
+        {/* <Link className="link-item" to="/commentspage">
           <Button>Comments</Button>&nbsp;
-        </Link>
+        </Link> */}
         <Link className="link-item-right" to="/login">
           <Button>Log-in</Button>&nbsp;
         </Link>

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 const url = "http://localhost:8080/add/comment";
 
 class PostComment extends Component {
@@ -50,7 +51,7 @@ class PostComment extends Component {
             alignItems: "center",
           }}
         >
-          Post a Comment
+          Leave a Comment
         </h1>
         <br />
         <form onSubmit={this.submitHandler}>

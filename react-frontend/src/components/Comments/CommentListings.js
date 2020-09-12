@@ -3,19 +3,21 @@ import DeleteComment from "./DeleteComment";
 import EditComment from "./EditComment";
 import { render } from "@testing-library/react";
 import { Button } from "react-bootstrap";
+import Popup from "reactjs-popup";
+import PostComment from "./PostComment";
 // import './ArticleListings.css'
 
 const CommentList = (commentList) => {
   //functional component
 
-  function handleEdit(id) {
-    console.log(id);
-    render(
-      <div>
-        <EditComment userID={id} />
-      </div>
-    );
-  }
+  // function handleEdit(id) {
+  //   console.log(id);
+  //   render(
+  //     <div>
+  //       <EditComment userID={id} />
+  //     </div>
+  //   );
+  // }
 
   function handleDelete(user, text) {
     render(
@@ -84,7 +86,21 @@ const CommentList = (commentList) => {
                 alignItems: "center",
               }}
             >
-              <Button onClick={() => handleEdit(data.id)}>Update</Button>&nbsp;
+              <Popup trigger={<Button> Update</Button>} position="right center">
+                <div
+                  style={{
+                    paddingLeft: "0%",
+                    top: "0%",
+                    width: "100%",
+                    height: "100%",
+                    backgroundColor: "#DCD0FF",
+                  }}
+                >
+                  <EditComment userID={data.id} />
+                </div>
+              </Popup>
+              &nbsp;
+              {/* <Button onClick={() => handleEdit(data.id)}>Update</Button>&nbsp; */}
               <Button onClick={() => handleDelete(data.user, data.text)}>
                 Delete
               </Button>
@@ -97,7 +113,12 @@ const CommentList = (commentList) => {
   };
   return (
     <div className="container">
-      <div className="rowCard">{renderList(commentList)}</div>
+      <div className="rowCard">
+        {renderList(commentList)}
+        <div>
+          <PostComment />
+        </div>
+      </div>
     </div>
   );
 };

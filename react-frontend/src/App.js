@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import Login from "./components/Login";
-// import Dashboard from "./components/Dashboard";
+// import Dashboard from "./components/Dashboard/Dashboard";
 import ArticlesPage from "./components/ArticlesPage";
-import CommentsPage from "./components/CommentsPage";
+// import CommentsPage from "./components/CommentsPage";
 import Notfound from "./Notfound";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
@@ -44,7 +44,7 @@ class App extends Component {
               />
               <Route path="/login" component={Login} />
               <Route path="/articlespage" component={ArticlesPage} />
-              <Route path="/commentspage" component={CommentsPage} />
+              {/* <Route path="/commentspage" component={CommentsPage} /> */}
               {/* <Route exact path="/dashboard" component={Dashboard} /> */}
               <Route component={Notfound} />
             </div>
