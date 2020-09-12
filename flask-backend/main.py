@@ -1,7 +1,8 @@
-from flask import Flask, request, render_template, Response
+from flask import Flask, request, render_template, Response, jsonify
 import pyrebase
 import json
 import uuid
+import datetime
 
 app = Flask("__main__",
             static_folder="../react-frontend/build/static",
@@ -57,7 +58,8 @@ def submit_post():
             db.child("posts").push({"title": title,
                                     "link": link,
                                     "user": user,
-                                    "upvotes": 0})
+                                    "upvotes": 0,
+                                    "timestamp": str(datetime.datetime.now())})
 
             post = db.child("posts").order_by_child("title").equal_to(title).get()
 
@@ -147,8 +149,12 @@ def upvote_posts():
 @app.route("/rest/posts", methods=['GET'])
 def get_posts():
     if request.method == 'GET':
-        posts = db.child("posts").get().val()
-        return posts
+        posts = db.child("posts").order_by_child("timestamp").get()
+        list_of_posts = []
+        for post in posts:
+            list_of_posts.append(post.val())
+        list_of_posts.reverse()
+        return jsonify(list_of_posts)
 
 
 @app.route("/rest/submit/comment", methods=['POST', 'PUT', 'DELETE'])
