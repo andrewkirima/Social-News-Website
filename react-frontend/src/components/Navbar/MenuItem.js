@@ -1,7 +1,7 @@
 export const MenuItem = [
   {
     title: "Sign Up",
-    url: "#",
+    url: "/login",
     cName: "nav-links-mobile",
   },
 ];

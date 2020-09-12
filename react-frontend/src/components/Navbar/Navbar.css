@@ -18,30 +18,19 @@
   cursor: pointer;
 }
 
-.fa-react {
-  margin-left: 0.5rem;
-  font-size: 1.6rem;
+.link-item {
+  text-decoration: none !important;
 }
 
-.nav-menu {
-  display: grid;
-  grid-template-columns: repeat(5, auto);
-  grid-gap: 10px;
-  list-style: none;
-  text-align: center;
-  width: 70vw;
-  justify-content: end;
-  margin-right: 2rem;
+.link-item-center {
+  text-decoration: none !important;
+  float: center;
+  margin-left: 28rem;
 }
 
-.fa-bars {
-  color: #ffff;
-}
-
-.nav-links-mobile {
-  display: none;
-}
-
-.menu-icon {
-  display: none;
+.link-item-right {
+  text-decoration: none !important;
+  float: right;
+  margin-left: auto;
+  margin-right: 20px;
 }
