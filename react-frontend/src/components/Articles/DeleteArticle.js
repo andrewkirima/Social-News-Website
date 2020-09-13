@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-const url = "http://localhost:8080/delete/1";
+const url = "/rest/posts/";
 
 class DeleteArticle extends Component {
   constructor(props) {

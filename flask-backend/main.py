@@ -42,7 +42,7 @@ def signup():
             return Response("Sign up was unsuccessful", status=401, mimetype='application/plain')
 
 
-@app.route("/rest/submit/post", methods=['POST', 'PUT', 'DELETE'])
+@app.route("/rest/submit/post", methods=['POST', 'PUT'])
 def submit_post():
     if request.method == 'POST':
         title = request.form['title']
@@ -75,6 +75,9 @@ def submit_post():
         new_title = request.form.get("new_title", "")
         link = request.form['link']
 
+        print("title: " + title)
+        print("new_title: " + new_title)
+        print("link: " + link)
         # .get() returns a PyreResponse object whose .key() value is the .key() of the parent node rather than
         #  the child even when there is only a single child node returned
         # So in order to get around this, the PyreResponse is iterated through (while containing only one child node)
@@ -103,23 +106,23 @@ def submit_post():
             post = obj.val()
 
         return post
-    elif request.method == 'DELETE':
-        title = request.form['title']
-
-        # .get() returns a PyreResponse object whose .key() value is the .key() of the parent node rather than
-        #  the child even when there is only a single child node returned.
-        # So in order to get around this, the PyreResponse is iterated through (while containing only one child node)
-        # and "key" is set to the child's key.
-        post = db.child("posts").order_by_child("title").equal_to(title).get()
-        key = ""
-        for obj in post:
-            key = obj.key()
-
-        if key:
-            db.child("posts").child(key).remove()
-            return Response(status=204)
-        else:
-            return Response("Deletion was unsuccessful.", status=401, mimetype='application/plain')
+    # elif request.method == 'DELETE':
+    #     title = request.form['title']
+    #
+    #     # .get() returns a PyreResponse object whose .key() value is the .key() of the parent node rather than
+    #     #  the child even when there is only a single child node returned.
+    #     # So in order to get around this, the PyreResponse is iterated through (while containing only one child node)
+    #     # and "key" is set to the child's key.
+    #     post = db.child("posts").order_by_child("title").equal_to(title).get()
+    #     key = ""
+    #     for obj in post:
+    #         key = obj.key()
+    #
+    #     if key:
+    #         db.child("posts").child(key).remove()
+    #         return Response(status=204)
+    #     else:
+    #         return Response("Deletion was unsuccessful.", status=401, mimetype='application/plain')
 
 
 @app.route("/rest/upvote/post", methods=['PUT'])
@@ -144,6 +147,27 @@ def upvote_posts():
             return Response(status=204)
         else:
             return Response("Upvote was unsuccessful.", status=401, mimetype='application/plain')
+
+
+@app.route("/rest/posts/<post_title>", methods=['DELETE'])
+def delete_post(post_title):
+    if request.method == 'DELETE':
+        title = post_title
+
+        # .get() returns a PyreResponse object whose .key() value is the .key() of the parent node rather than
+        #  the child even when there is only a single child node returned.
+        # So in order to get around this, the PyreResponse is iterated through (while containing only one child node)
+        # and "key" is set to the child's key.
+        post = db.child("posts").order_by_child("title").equal_to(title).get()
+        key = ""
+        for obj in post:
+            key = obj.key()
+
+        if key:
+            db.child("posts").child(key).remove()
+            return Response(status=204)
+        else:
+            return Response("Deletion was unsuccessful.", status=401, mimetype='application/plain')
 
 
 @app.route("/rest/posts", methods=['GET'])
@@ -223,8 +247,12 @@ def submit_comment():
 @app.route("/rest/comments/<post_title>", methods=['GET'])
 def get_comments(post_title):
     if request.method == 'GET':
-        comments = db.child("comments").order_by_child("post_title").equal_to(post_title).get().val()
-        return comments
+        comments = db.child("comments").order_by_child("post_title").equal_to(post_title).get()
+        list_of_comments = []
+        for comment in comments:
+            list_of_comments.append(comment.val())
+        list_of_comments.reverse()
+        return jsonify(list_of_comments)
 
 
 @app.route("/")

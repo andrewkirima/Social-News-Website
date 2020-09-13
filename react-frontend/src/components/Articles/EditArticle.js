@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-const url = "http://localhost:8080/put/1";
+const url = "/rest/submit/post";
 
 class EditArticle extends Component {
   constructor(props) {
@@ -9,22 +9,30 @@ class EditArticle extends Component {
     this.state = {
       title: "",
       link: "",
+      oldTitle: "",
+      oldLink: "",
       user: "",
     };
+  }
+
+  componentDidMount() {
+    this.setState({ oldTitle: this.props.title });
+    this.setState({ oldLink: this.props.link});
   }
 
   changeHandler = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  submitHandler = (userID) => {
+  submitHandler = (e) => {
+    e.preventDefault();
     console.log(this.state);
     var formData = new FormData();
-    formData.append("title", this.state.title);
-    formData.append("link", this.state.link);
-    formData.append("user", this.state.user);
+    if(this.state.title != "") {formData.append("new_title", this.state.title);}
+    formData.append("title", this.props.title);
+    this.state.link == "" ? formData.append("link", this.props.link) : formData.append("link", this.state.link);
 
-    fetch(url + userID, {
+    fetch(url, {
       //userid stores the id of the post user wanted to update
       method: "PUT",
       body: formData,
@@ -65,7 +73,7 @@ class EditArticle extends Component {
           >
             <tbody>
               <tr>
-                <td>Title of Article:&nbsp;</td>
+                <td>New Title:&nbsp;</td>
                 <td>
                   <input
                     type="text"
@@ -76,23 +84,12 @@ class EditArticle extends Component {
                 </td>
               </tr>
               <tr>
-                <td>Article Link:</td>
+                <td>New Link:</td>
                 <td>
                   <input
                     type="text"
                     name="link"
                     value={link}
-                    onChange={this.changeHandler}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>User Name:</td>
-                <td>
-                  <input
-                    type="text"
-                    name="user"
-                    value={user}
                     onChange={this.changeHandler}
                   />
                 </td>

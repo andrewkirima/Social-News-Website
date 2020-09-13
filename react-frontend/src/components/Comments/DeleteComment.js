@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-const url = "http://localhost:8080/delete/1";
+const url = "/rest/submit/comment";
 
 class DeleteComment extends Component {
   constructor(props) {
@@ -8,14 +8,16 @@ class DeleteComment extends Component {
     this.state = {};
   }
 
-  handleClick = (user, text) => {
-    console.log(user, text);
+  handleClick = (uuid) => {
+    var formData = new FormData();
+    formData.append("uuid", uuid);
     const requestOptions = {
       method: "DELETE",
+      body: formData
     };
 
     // user+text is the user's name and text body
-    fetch(url + user + text, requestOptions)
+    fetch(url, requestOptions)
       .then((response) => {
         return response.json();
       })
@@ -25,7 +27,7 @@ class DeleteComment extends Component {
   };
 
   render() {
-    return <div>{this.handleClick(this.props.user, this.props.text)}</div>;
+    return <div>{this.handleClick(this.props.uuid)}</div>;
   }
 }
 

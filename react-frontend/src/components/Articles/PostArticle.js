@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-const url = "http://localhost:8080/add/article";
+const url = "/rest/submit/post";
 
 class PostArticle extends Component {
   constructor(props) {

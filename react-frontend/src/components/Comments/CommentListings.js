@@ -7,7 +7,7 @@ import Popup from "reactjs-popup";
 import PostComment from "./PostComment";
 // import './ArticleListings.css'
 
-const CommentList = (commentList) => {
+const CommentList = ({commentList, postTitle}) => {
   //functional component
 
   // function handleEdit(id) {
@@ -19,29 +19,19 @@ const CommentList = (commentList) => {
   //   );
   // }
 
-  function handleDelete(user, text) {
+  function handleDelete(comment_uuid) {
     render(
       <div>
-        <DeleteComment user={user} text={text} />
+        <DeleteComment uuid={comment_uuid} />
       </div>
     );
   }
 
-  const renderList = ({ commentList }) => {
+  const renderList = () => {
     if (commentList) {
       return commentList.map((data) => {
         return (
           <div className="rowCard">
-            <div
-              className="id"
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              {data.id}
-            </div>
             <div
               style={{
                 display: "flex",
@@ -58,25 +48,7 @@ const CommentList = (commentList) => {
                 alignItems: "center",
               }}
             >
-              Hello {data.post_title}
-            </div>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
               Comment: {data.text}
-            </div>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              Upvotes: {data.upvotes}
             </div>
             <br />
             <div
@@ -96,12 +68,12 @@ const CommentList = (commentList) => {
                     backgroundColor: "#DCD0FF",
                   }}
                 >
-                  <EditComment userID={data.id} />
+                  <EditComment uuid={data.uuid} />
                 </div>
               </Popup>
               &nbsp;
               {/* <Button onClick={() => handleEdit(data.id)}>Update</Button>&nbsp; */}
-              <Button onClick={() => handleDelete(data.user, data.text)}>
+              <Button onClick={() => handleDelete(data.uuid)}>
                 Delete
               </Button>
             </div>
@@ -116,7 +88,7 @@ const CommentList = (commentList) => {
       <div className="rowCard">
         {renderList(commentList)}
         <div>
-          <PostComment />
+          <PostComment postTitle = { postTitle }/>
         </div>
       </div>
     </div>

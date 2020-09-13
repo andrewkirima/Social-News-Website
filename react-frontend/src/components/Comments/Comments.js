@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import CommentList from "./CommentListings";
 
-const url = "http://localhost:6800/comments"; //temp url hosting on json server
+const url = "/rest/comments/"; //temp url hosting on json server
 
 class Comments extends Component {
   //class component
@@ -14,8 +14,9 @@ class Comments extends Component {
     };
   }
 
-  componentDidMount(title) {
-    fetch(url, { method: "GET" })
+  componentDidMount() {
+    var title = this.props.title;
+    fetch(url + title, { method: "GET" })
       .then((response) => response.json())
       .then((data) => {
         this.setState({
@@ -28,7 +29,7 @@ class Comments extends Component {
     console.log(this.state.comments);
     return (
       <div>
-        <CommentList commentList={this.state.comments} />
+        <CommentList commentList={this.state.comments} postTitle={this.props.title} />
       </div>
     );
   }

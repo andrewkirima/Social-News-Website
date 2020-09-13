@@ -106,7 +106,7 @@ const ArticleList = (articleList) => {
                     backgroundColor: "#DCD0FF",
                   }}
                 >
-                  <EditArticle userID={data.id} />
+                  <EditArticle title={data.title} link={data.link} user={data.user}/>
                 </div>
               </Popup>
               {/* <Button onClick={() => handleEdit(data.id)}>Edit Post</Button> */}

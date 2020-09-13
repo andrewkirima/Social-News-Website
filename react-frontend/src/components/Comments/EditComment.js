@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 
-const url = "http://localhost:8080/add/comment";
+const url = "/rest/submit/comment";
 
 class EditComment extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      user: "",
       text: "",
     };
   }
@@ -20,9 +19,8 @@ class EditComment extends Component {
     e.preventDefault();
     console.log(this.state);
     var formData = new FormData();
-    formData.append("user", this.state.user);
-    formData.append("text", this.state.link);
-    formData.append("post_title", this.state.post_title);
+    formData.append("text", this.state.text);
+    formData.append("uuid", this.props.uuid);
 
     fetch(url, {
       method: "PUT",
@@ -39,7 +37,7 @@ class EditComment extends Component {
   };
 
   render() {
-    const { user, text } = this.state;
+    const { text } = this.state;
     return (
       <div>
         <br />
@@ -63,28 +61,6 @@ class EditComment extends Component {
             }}
           >
             <tbody>
-              <tr>
-                <td>User:</td>
-                <td>
-                  <input
-                    type="text"
-                    name="user"
-                    value={user}
-                    onChange={this.changeHandler}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>Post Title:</td>
-                <td>
-                  <input
-                    type="text"
-                    name="text"
-                    value={text}
-                    onChange={this.changeHandler}
-                  />
-                </td>
-              </tr>
               <tr>
                 <td>Comment:&nbsp;</td>
                 <td>

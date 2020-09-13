@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-const url = "http://localhost:8080/add/comment";
+const url = "/rest/submit/comment";
 
 class PostComment extends Component {
   constructor(props) {
@@ -22,8 +22,8 @@ class PostComment extends Component {
     console.log(this.state);
     var formData = new FormData();
     formData.append("user", this.state.user);
-    formData.append("text", this.state.link);
-    formData.append("post_title", this.state.post_title);
+    formData.append("text", this.state.text);
+    formData.append("post_title", this.props.postTitle);
 
     fetch(url, {
       method: "POST",
