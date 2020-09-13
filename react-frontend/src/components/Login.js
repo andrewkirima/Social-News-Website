@@ -8,6 +8,8 @@ class Login extends Component {
         this.state = {
             email: "",
             password: "",
+            signupEmail: "",
+            signupPassword: "",
             account: {},
         }
     }
@@ -37,13 +39,14 @@ class Login extends Component {
             .catch(function(error) {
                 console.log('Request failed', error)
             });
+        alert("Successfully Logged In!");
     }
 
     handleSubmitSignup = (e) => {
         e.preventDefault();
         var formData = new FormData();
-        formData.append('email', this.state.email);
-        formData.append('password', this.state.password);
+        formData.append('email', this.state.signupEmail);
+        formData.append('password', this.state.signupPassword);
 
         const requestOptions = {
             method: 'POST',
@@ -60,11 +63,14 @@ class Login extends Component {
             .catch(function(error) {
                 console.log('Request failed', error)
             });
+        alert("Succesfully Signup Up!");
     }
 
     render() {
      const email = this.state.email;
      const password = this.state.password;
+     const signupEmail = this.state.signupEmail;
+     const signupPassword = this.state.signupPassword;
      return (  <div>
             <b>Email</b>
             <br/>
@@ -103,15 +109,15 @@ class Login extends Component {
                         <tr>
                             <td>username:</td>
                             <td>
-                                <input type="email" name="email" size="20" autocorrect="off" spellcheck="false"
-                                       autocapitalize="off" value={email} onChange={this.handleChange}/>
+                                <input type="email" name="signupEmail" size="20" autocorrect="off" spellcheck="false"
+                                       autocapitalize="off" value={signupEmail} onChange={this.handleChange}/>
                             </td>
                         </tr>
                         <tr>
                             <td>password:</td>
                             <td>
-                                <input type="password" name="password" size="20"
-                                       required value={password} onChange={this.handleChange}/>
+                                <input type="password" name="signupPassword" size="20"
+                                       required value={signupPassword} onChange={this.handleChange}/>
                             </td>
                         </tr>
                     </tbody>
