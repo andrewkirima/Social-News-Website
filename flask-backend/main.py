@@ -3,10 +3,14 @@ import pyrebase
 import json
 import uuid
 import datetime
+import os
+
+static_folder = os.path.abspath('./build/static')
+template_folder = os.path.abspath('./build')
 
 app = Flask("__main__",
-            static_folder="../react-frontend/build/static",
-            template_folder="../react-frontend/build")
+            static_folder=static_folder,
+            template_folder=template_folder)
 
 firebaseConfig = {
     "apiKey": "AIzaSyBkAIsqEHjOGgvwl3qs0VKGizslm5pCCvo",
@@ -260,4 +264,5 @@ def root():
     return render_template("index.html")
 
 
-app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
